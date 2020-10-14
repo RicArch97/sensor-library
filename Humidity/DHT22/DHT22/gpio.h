@@ -1,6 +1,7 @@
 /*
     GPIO reading & writing for DHT22 Sensor library.
-    Created by Ricardo Steijn (date)
+    Created by Ricardo Steijn, Oktober 10, 2020.
+    Last update on Oktober 13, 2020.
 */
 
 #ifndef GPIO_H

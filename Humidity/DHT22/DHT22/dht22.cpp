@@ -1,6 +1,7 @@
 /*
     DHT22 Sensor library.
-    Created by Ricardo Steijn (date)
+    Created by Ricardo Steijn, Oktober 6, 2020.
+    Last update on Oktober 14, 2020.
 
     This library supports a very efficient temperature and humidity reading.
     This library supports an accurate calibration function.
@@ -48,8 +49,6 @@ void DHT22::readWire() {
     // Data communication with the DHT22 using "1-Wire" protocol.
     // Using Aosong Electronics DHT22 datasheet.
     uint8_t sensorData[5];
-    //if (!readTimer.finished()) return;
-
     /*
     Reading from the wire
     Step 1: Set data line low for (at least) 1ms, and wait 20-40 us.
@@ -57,6 +56,7 @@ void DHT22::readWire() {
     Step 3: Sensor sends 40 bits to the MCU, every bit's transmission starts with low voltage level for 50us.
             The high level signal duration respresents the bit, ~28 us = 0, ~70 us = 1
     */
+
     // Step 1
     pinMode(this->dataPin, OUTPUT);
     writeGpio(this->dataPin, 0);

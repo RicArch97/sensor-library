@@ -1,6 +1,7 @@
 /*
   timer.cpp - Class to create and manage timers.
   Created by Ricardo Steijn, October 6, 2020.
+  Last update on Oktober 12, 2020.
 */
 
 #include "timer.h"

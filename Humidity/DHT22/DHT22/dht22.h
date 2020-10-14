@@ -1,6 +1,7 @@
 /*
     DHT22 Sensor library.
-    Created by Ricardo Steijn (date)
+    Created by Ricardo Steijn, Oktober 7, 2020.
+    Last update on Oktober 13, 2020.
 
     This library supports a very efficient temperature and humidity reading.
     This library supports an accurate calibration function.
@@ -11,7 +12,6 @@
 
 #include <Arduino.h>
 #include "gpio.h"
-#include "timer.h"
 
 class DHT22 {
 public:
