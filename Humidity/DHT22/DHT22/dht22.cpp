@@ -59,14 +59,14 @@ void DHT22::readWire() {
 
     // Step 1
     pinMode(this->dataPin, OUTPUT);
-    writeGpio(this->dataPin, 0);
+    WRITE_GPIO_LOW(this->dataPin);
     delayMicroseconds(1050);
     pinMode(this->dataPin, INPUT_PULLUP);
     delayMicroseconds(40);
 
     // Step 2
-    checkGpio(this->dataPin, LOW);
-    checkGpio(this->dataPin, HIGH);
+    if (checkGpio(this->dataPin, LOW) == 0) return;
+    if (checkGpio(this->dataPin, HIGH) == 0) return;
 
     // Step 3
     // The micros() function disables interrupts while measuring time. 
