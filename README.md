@@ -5,8 +5,8 @@ A complete library with support for various sensors, with additional functions l
 
 List of supported sensors of various types.
 
-### Humidifier sensors
+### Humidity sensors
 
-- DHT11
+- DHT22
 
-### Optical sensors
+### More coming soon!
