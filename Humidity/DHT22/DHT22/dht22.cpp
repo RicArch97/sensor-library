@@ -18,7 +18,7 @@ DHT22::DHT22(REG_SIZE pin) {
     this->portRegOut = PORT_REG_OUT(pin);
 }
 
-void DHT22::setup() {
+void DHT22::start() {
     // setup the sensor
     pinMode(this->dataPin, INPUT_PULLUP);
     this->lastRead = millis() - 2000;

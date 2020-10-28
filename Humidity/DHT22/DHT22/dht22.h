@@ -16,7 +16,7 @@
 class DHT22 {
 public:
     DHT22(REG_SIZE pin);
-    void setup();
+    void start();
     float getTemperature();
     float getHumidity();
     void calibrate(float valueTable[]);

@@ -1,0 +1,5 @@
+DHT22	KEYWORD1
+start	KEYWORD2
+getTemperature	KEYWORD2
+getHumidity	KEYWORD2
+calibrate	KEYWORD2

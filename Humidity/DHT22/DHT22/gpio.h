@@ -1,7 +1,7 @@
 /*
     GPIO reading & writing for DHT22 Sensor library.
     Created by Ricardo Steijn, Oktober 10, 2020.
-    Last update on Oktober 21, 2020.
+    Last update on Oktober 28, 2020.
 */
 
 #ifndef GPIO_H
@@ -58,18 +58,19 @@ unsigned long checkGpio(volatile REG_SIZE *portReg, REG_SIZE bitMask, REG_SIZE s
     // Check if a pin is in a certain state (for a certain amount of time).
     // Basically the same as pulseInLong but then with own direct read function.
     unsigned long startMicros = micros();
-
-	// wait for the pulse to start
+    
+    // wait for the pulse to start
 	while (READ_GPIO(portReg, bitMask) != state) {
-		if (micros() - startMicros > timeout) return 0;
-	}
-
-	unsigned long start = micros();
-	// wait for the pulse to stop
-	while (READ_GPIO(portReg, bitMask) == state) {
-		if (micros() - startMicros > timeout) return 0;
-	}
-	return micros() - start;
+        if (micros() - startMicros > timeout) return 0;
+    }
+    
+    unsigned long start = micros();
+    // wait for the pulse to stop
+    while (READ_GPIO(portReg, bitMask) == state) {
+        if (micros() - startMicros > timeout) return 0;
+    }
+    
+    return micros() - start;
 }
 
 #endif

@@ -34,8 +34,8 @@ Direct GPIO pins could be faster on slower boards since digitalRead could take a
 #### DHT22(int pin)
 > Create a new DHT22 object, provide the pin number on the microcontroller that the datapin of the DHT22 is connected to.
 
-#### void setup()
-> Initializes variables like the pin and read time.
+#### void start()
+> Initializes pins and sets up timer.
 
 #### float getTemperature()
 > Returns the last saved temperature value read from the sensor. A timer will make sure readings are only requested every 2 seconds. If the 2 seconds has not passed yet, the function returns the last read value.
