@@ -9,4 +9,8 @@ List of supported sensors of various types.
 
 - DHT22
 
+### Distance sensors
+
+- HC-SR04
+
 ### More coming soon!
