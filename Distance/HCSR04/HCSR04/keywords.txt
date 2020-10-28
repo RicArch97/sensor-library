@@ -1,0 +1,7 @@
+HCSR04	KEYWORD1
+start	KEYWORD2
+getDistance	KEYWORD2
+getDuration	KEYWORD2
+triggerPulse	KEYWORD2
+setTransmitter	KEYWORD2
+calibrate	KEYWORD2
