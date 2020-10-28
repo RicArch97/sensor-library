@@ -19,12 +19,14 @@ public:
     void setup();
     float getTemperature();
     float getHumidity();
-    void calibrate(float minValue, float maxValue);
+    void calibrate(float valueTable[]);
 private:
     REG_SIZE dataPin;
+    REG_SIZE bitMask;
+    volatile REG_SIZE *portRegIn, *portRegOut;
     float temperature;
     float humidity;
-    uint32_t lastRead;
+    unsigned long lastRead;
     void readWire();
 };
 

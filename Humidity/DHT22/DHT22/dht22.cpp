@@ -13,6 +13,9 @@
 DHT22::DHT22(REG_SIZE pin) {
     // Initialize.
     this->dataPin = pin;
+    this->bitMask = BITMASK(pin);
+    this->portRegIn = PORT_REG_IN(pin);
+    this->portRegOut = PORT_REG_OUT(pin);
 }
 
 void DHT22::setup() {
@@ -23,7 +26,7 @@ void DHT22::setup() {
 
 float DHT22::getTemperature() {
     // Return the last read temperature.
-    uint32_t currenttime = millis();
+    unsigned long currenttime = millis();
     if ((currenttime - this->lastRead) > 2000) {
         readWire();
         this->lastRead = currenttime;
@@ -33,7 +36,7 @@ float DHT22::getTemperature() {
 
 float DHT22::getHumidity() {
     // Return the last read humidity.
-    uint32_t currenttime = millis();
+    unsigned long currenttime = millis();
     if ((currenttime - this->lastRead) > 2000) {
         readWire();
         this->lastRead = currenttime;
@@ -41,8 +44,8 @@ float DHT22::getHumidity() {
     return this->humidity;
 }
 
-void DHT22::calibrate(float minValue, float maxValue) {
-    // Calibrate the sensor to operate between given voltage levels.
+void DHT22::calibrate(float valueTable[]) {
+    // Calibrate the sensor by taking several samples & applying compensation based on the curve.
 }
 
 void DHT22::readWire() {
@@ -59,21 +62,21 @@ void DHT22::readWire() {
 
     // Step 1
     pinMode(this->dataPin, OUTPUT);
-    WRITE_GPIO_LOW(this->dataPin);
+    WRITE_GPIO_LOW(this->portRegOut, this->bitMask);
     delayMicroseconds(1050);
     pinMode(this->dataPin, INPUT_PULLUP);
     delayMicroseconds(40);
 
     // Step 2
-    if (checkGpio(this->dataPin, LOW) == 0) return;
-    if (checkGpio(this->dataPin, HIGH) == 0) return;
+    if (checkGpio(this->portRegIn, this->bitMask, LOW) == 0) return;
+    if (checkGpio(this->portRegIn, this->bitMask, HIGH) == 0) return;
 
     // Step 3
     // The micros() function disables interrupts while measuring time. 
     unsigned long measurements[40];
     for (int i = 0; i < 40; i++) {
-        checkGpio(this->dataPin, LOW);
-        measurements[i] = checkGpio(this->dataPin, HIGH);
+        checkGpio(this->portRegIn, this->bitMask, LOW);
+        measurements[i] = checkGpio(this->portRegIn, this->bitMask, HIGH);
     }
 
     // Check all the values.

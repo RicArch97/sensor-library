@@ -6,7 +6,7 @@
 
 #include "dht22.h"
 
-DHT22 dht22(4);
+DHT22 dht22(8);
 
 void setup() {
     Serial.begin(115200);
@@ -15,6 +15,6 @@ void setup() {
 
 void loop() {
     delay(2000);
-    Serial.println(dht22.getHumidity());
-    Serial.println(dht22.getTemperature());
+    Serial.println("Humidity: " + (String)dht22.getHumidity());
+    Serial.println("Temperature: " + (String)dht22.getTemperature());
 }
